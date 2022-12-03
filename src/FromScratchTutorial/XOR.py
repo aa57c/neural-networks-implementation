@@ -1,10 +1,10 @@
 import numpy as np
 
-from Network import Network
-from FCLayer import FCLayer
-from ActivationLayer import ActivationLayer
-from ActivationFunction import tanh, tanh_prime
-from Loss import mse, mse_prime
+from src.FromScratchTutorial.Network import Network
+from src.FromScratchTutorial.FCLayer import FCLayer
+from src.FromScratchTutorial.ActivationLayer import ActivationLayer
+from src.FromScratchTutorial.ActivationFunction import tanh, tanh_prime
+from src.FromScratchTutorial.Loss import mse, mse_prime
 
 # training data
 x_train = np.array([[[0,0]], [[0,1]], [[1,0]], [[1,1]]])
