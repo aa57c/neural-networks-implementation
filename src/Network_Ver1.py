@@ -3,7 +3,7 @@ For all versions, I used these python libraries, just to make the process of mak
 
 This is version 1 of my network.
 I used a total of 4 layers, including input and output layers
-Hidden layers have 5 neurons total
+Hidden layers have 6 neurons total
 I normalized all the data
 Loss function used was binary_crossentropy (which is the standard since I am only predicting two values
 (heart disease present or not)
@@ -18,7 +18,7 @@ from keras.layers import Dense
 from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix, accuracy_score
 
 # load dataset
 
@@ -30,8 +30,8 @@ X = pd.DataFrame(dataset.iloc[:, 0:13])
 Y = dataset.iloc[:, 13]
 
 # Testing to see if data saved correctly
-X_CSV = X.to_csv('data/Input_Output_Data/Ver1/X_CSV.csv', index=False)
-Y_CSV = pd.DataFrame(Y).to_csv('data/Input_Output_Data/Ver1/Y_CSV.csv', index=False)
+X_CSV = X.to_csv('data/Input_Output_Data/Ver1/X.csv', index=False)
+Y_CSV = pd.DataFrame(Y).to_csv('data/Input_Output_Data/Ver1/Y.csv', index=False)
 
 # one hot encode chest pain type column
 ct = ColumnTransformer([("cp", OneHotEncoder(), [2])], remainder='passthrough')
@@ -50,16 +50,15 @@ no heart disease, and then if it is greater than 0, there is presence of heart d
 Y = Y.replace(to_replace=[1, 2, 3, 4], value=1)
 
 # split the X and Y Dataset into Training set and Test set
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0, shuffle=True)
 
-# printing out test and training data for X and Y (for testing)
-pd.DataFrame(X_train).to_csv('data/Train_Data/Ver1/X_train_CSV.csv', index=False)
-pd.DataFrame(X_test).to_csv('data/Test_Data/Ver1/X_test_CSV.csv', index=False)
-pd.DataFrame(Y_train).to_csv('data/Train_Data/Ver1/Y_train_CSV.csv', index=False)
-pd.DataFrame(Y_test).to_csv('data/Test_Data/Ver1/Y_test_CSV.csv', index=False)
+# printing out test, training, and validation data for X and Y (for testing)
+pd.DataFrame(X_train).to_csv('data/Train_Data/Ver1/X_train.csv', index=False)
+pd.DataFrame(X_test).to_csv('data/Test_Data/Ver1/X_test.csv', index=False)
+pd.DataFrame(Y_train).to_csv('data/Train_Data/Ver1/Y_train.csv', index=False)
+pd.DataFrame(Y_test).to_csv('data/Test_Data/Ver1/Y_test.csv', index=False)
 
-
-# normalize values
+# normalize values of training and validation
 # (for this version of the network, I normalized all columns)
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
@@ -76,9 +75,9 @@ network = Sequential()
 
 # adding input layer and first hidden layer
 # fully completed layers have the Rectifier Activation Function
-network.add(Dense(5, activation='relu', input_dim=16))
+network.add(Dense(6, activation='relu', input_dim=16))
 # adding second hidden layer
-network.add(Dense(5, activation='relu'))
+network.add(Dense(6, activation='relu'))
 # adding output layer, Activation Function is Hyperbolic Tangent
 network.add(Dense(1, activation='tanh'))
 
@@ -93,7 +92,7 @@ metrics = accuracy because i want to display the accuracy of such prediction
 network.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
 # fit the network to the training set
-network.fit(X_train, Y_train, validation_split=0.3, batch_size=10, epochs=100)
+network.fit(X_train, Y_train, validation_split=0.4, batch_size=10, epochs=100)
 
 
 # predict the test set results
@@ -104,6 +103,8 @@ Y_pred = (Y_pred > 0.5)
 
 Y_Prediction_CSV = pd.DataFrame(Y_pred).to_csv('data/Predict_TestData/Ver1/Y_Prediction.csv')
 
+cm = confusion_matrix(Y_test, Y_pred)
+print(cm)
 print("How accurate is the network at predicting artery disease?: %f" % accuracy_score(Y_test, Y_pred))
 
 

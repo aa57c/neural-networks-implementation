@@ -1,5 +1,8 @@
-import numpy as np
+"""
+Tutorial from: https://towardsdatascience.com/math-neural-network-from-scratch-in-python-d6da9f29ce65
+"""
 
+import numpy as np
 from src.FromScratchTutorial.Network import Network
 from src.FromScratchTutorial.FCLayer import FCLayer
 from src.FromScratchTutorial.ActivationLayer import ActivationLayer

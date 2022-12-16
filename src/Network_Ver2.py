@@ -8,10 +8,9 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 
 '''
 for this version, I didn't use one hot to encode chest pain type and increased the neurons in the
-hidden layer from 5 to 6
+hidden layer from 6 to 7
 less input neurons this time, 13 instead of 16
 
-output of this was a lot better than with one hot
 '''
 
 # load dataset
@@ -23,8 +22,8 @@ X = pd.DataFrame(dataset.iloc[:, 0:13])
 Y = dataset.iloc[:, 13]
 
 # Testing to see if data saved correctly
-X_CSV = X.to_csv('data/Input_Output_Data/Ver2/X_CSV.csv', index=False)
-Y_CSV = pd.DataFrame(Y).to_csv('data/Input_Output_Data/Ver2/Y_CSV.csv', index=False)
+X_CSV = X.to_csv('data/Input_Output_Data/Ver2/X.csv', index=False)
+Y_CSV = pd.DataFrame(Y).to_csv('data/Input_Output_Data/Ver2/Y.csv', index=False)
 
 # change dependent (target) variable to match dictionary description
 '''
@@ -39,13 +38,15 @@ no heart disease, and then if it is greater than 0, there is presence of heart d
 Y = Y.replace(to_replace=[1, 2, 3, 4], value=1)
 
 # split the X and Y Dataset into Training set and Test set
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0, shuffle=True)
 
-# printing out test and training data for X and Y (for testing)
-pd.DataFrame(X_train).to_csv('data/Train_Data/Ver2/X_train_CSV.csv', index=False)
-pd.DataFrame(X_test).to_csv('data/Test_Data/Ver2/X_test_CSV.csv', index=False)
-pd.DataFrame(Y_train).to_csv('data/Train_Data/Ver2/Y_train_CSV.csv', index=False)
-pd.DataFrame(Y_test).to_csv('data/Test_Data/Ver2/Y_test_CSV.csv', index=False)
+# printing out test, training, and validation data for X and Y (for testing)
+pd.DataFrame(X_train).to_csv('data/Train_Data/Ver2/X_train.csv', index=False)
+pd.DataFrame(X_test).to_csv('data/Test_Data/Ver2/X_test.csv', index=False)
+pd.DataFrame(Y_train).to_csv('data/Train_Data/Ver2/Y_train.csv', index=False)
+pd.DataFrame(Y_test).to_csv('data/Test_Data/Ver2/Y_test.csv', index=False)
+
+
 
 
 # normalize values
@@ -66,9 +67,9 @@ network = Sequential()
 
 # adding input layer and first hidden layer
 # fully completed layers have the Rectifier Activation Function
-network.add(Dense(6, activation='relu', input_dim=13))
+network.add(Dense(5, activation='relu', input_dim=13))
 # adding second hidden layer
-network.add(Dense(6, activation='relu'))
+network.add(Dense(5, activation='relu'))
 # adding output layer, Activation Function is Hyperbolic Tangent
 network.add(Dense(1, activation='tanh'))
 
@@ -89,8 +90,9 @@ Y_pred = network.predict(X_test)
 # if accuracy score is above 0.5, then the Y_pred will be set to True
 Y_pred = (Y_pred > 0.5)
 
-Y_Prediction_CSV = pd.DataFrame(Y_pred).to_csv('data/Predict_TestData/Ver2/Y_Prediction.csv')
+pd.DataFrame(Y_pred).to_csv('data/Predict_TestData/Ver2/Y_Prediction.csv')
 
+# prints confusion matrix (shows what the network classified as correct and which ones it did not)
 cm = confusion_matrix(Y_test, Y_pred)
 print(cm)
 print("How accurate is the network at predicting artery disease?: %f" % accuracy_score(Y_test, Y_pred))
