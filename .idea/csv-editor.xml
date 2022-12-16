@@ -3,21 +3,63 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\src\Dep_Var.csv">
+        <entry key="\src\FromLibrariesTutorial\Churn_Modelling.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\src\Ind_Vars.csv">
+        <entry key="\src\data\Input_Output_Data\X_CSV.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\src\data\Churn_Modelling.csv">
+        <entry key="\src\data\Input_Output_Data\Y_CSV.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\data\Predict_TestData\Y_Prediction.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\data\Test_Data\X_TEST_NORMALIZED.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\data\Test_Data\X_test_CSV.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\data\Test_Data\Y_test_CSV.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\data\Train_Data\X_TRAIN_NORMALIZED.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\data\Train_Data\X_train_CSV.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -31,35 +73,21 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\src\data\X_TEST.csv">
+        <entry key="\src\data\X_ONE_HOT_ENC.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\src\data\X_TEST_CSV.csv">
+        <entry key="\src\data\X_test_CSV.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\src\data\X_TRAIN.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\src\data\X_TRAIN_CSV.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\src\data\X_train_csv.csv">
+        <entry key="\src\data\X_train_CSV.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -67,13 +95,6 @@
           </value>
         </entry>
         <entry key="\src\data\Y_CSV.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\src\data\Y_Prediction.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
