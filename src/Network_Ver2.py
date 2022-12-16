@@ -47,13 +47,12 @@ pd.DataFrame(Y_train).to_csv('data/Train_Data/Ver2/Y_train.csv', index=False)
 pd.DataFrame(Y_test).to_csv('data/Test_Data/Ver2/Y_test.csv', index=False)
 
 
-
-
 # normalize values
 # (for this version of the network, I normalized all columns)
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
+
 
 # Test to see if normalization worked
 pd.DataFrame(X_train).to_csv('data/Train_Data/Ver2/X_TRAIN_NORMALIZED.csv', index=False)
@@ -67,9 +66,9 @@ network = Sequential()
 
 # adding input layer and first hidden layer
 # fully completed layers have the Rectifier Activation Function
-network.add(Dense(5, activation='relu', input_dim=13))
+network.add(Dense(7, activation='relu', input_dim=13))
 # adding second hidden layer
-network.add(Dense(5, activation='relu'))
+network.add(Dense(7, activation='relu'))
 # adding output layer, Activation Function is Hyperbolic Tangent
 network.add(Dense(1, activation='tanh'))
 

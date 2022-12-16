@@ -92,7 +92,7 @@ metrics = accuracy because i want to display the accuracy of such prediction
 network.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
 # fit the network to the training set
-network.fit(X_train, Y_train, validation_split=0.4, batch_size=10, epochs=100)
+network.fit(X_train, Y_train, validation_split=0.3, batch_size=10, epochs=100)
 
 
 # predict the test set results
